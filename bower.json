@@ -1,0 +1,23 @@
+{
+  "name": "laravel",
+  "description": "Laravel 5 applications.",
+  "main": "",
+  "authors": [
+    "anisku11 <aan.faisalal@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/anisku11/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "gentelella": "^1.4.0",
+    "font-awesome": "^4.7.0",
+    "bootstrap": "^3.3.7"
+  }
+}
