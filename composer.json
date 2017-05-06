@@ -1,6 +1,6 @@
 {
-    "name": "laravel 5.4 gentella admin stater",
-    "description": "Laravel 5.4 stater",
+    "name": "Sistem Informasi Audit Energi Listrik",
+    "description": "Laravel 5.4",
     "type": "project",
     "keywords": ["php", "framework", "laravel", "laravel5", "admin", "theme", "starter", "bootstrap", "docker", "template", "social-login", "nodejs"],
     "homepage": "https://github.com/anisku11",
@@ -21,15 +21,18 @@
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "5.4.*"
+        "laravelcollective/html": "5.4.*",
+        "barryvdh/laravel-dompdf": "^0.8.0",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7",
+        "appzcoder/crud-generator": "^2.0",
         "barryvdh/laravel-debugbar": "^2.1",
         "barryvdh/laravel-ide-helper": "^2.2",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~5.7"
     },
     "autoload": {
         "classmap": [

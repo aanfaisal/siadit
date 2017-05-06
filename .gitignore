@@ -6,7 +6,6 @@ vendor/
 node_modules/
 bower_components/
 bootstrap/compiled.php
-bootstrap/cache/
 
 storage/debugbar/
 storage/framework/views/
@@ -25,10 +24,4 @@ public/mix-manifest.json
 .sass-cache
 
 # IDE exclusions
-.DS_Store
-Thumbs.db
-.idea
-_ide_helper.php
-.phpstorm.meta.php
-*.sqlite
-.rocketeer/
+.phpintel
