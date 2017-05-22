@@ -10,7 +10,7 @@ env:
 
 before_script:
   - cp .env.example .env
-  - mysql -e 'create database laravel_boilerplate;'
+  - mysql -e 'create database siadit;'
   - mysql -u root -h 127.0.0.1 -e "SHOW DATABASES"
   - mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('')"
   - composer install --prefer-dist --no-interaction

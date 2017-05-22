@@ -1,6 +1,6 @@
 !.gitkeep
 
-# Laravel, nodeJS, Bower, Gulp exclusions, Composer exclusions
+# Laravel, nodeJS, Bower, Gulp exclusions, Composer Yang Di ignore
 .htaccess
 vendor/
 node_modules/
