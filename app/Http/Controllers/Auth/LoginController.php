@@ -6,107 +6,103 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
-{
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+class LoginController extends Controller {
+	/*
+		    |--------------------------------------------------------------------------
+		    | Login Controller
+		    |--------------------------------------------------------------------------
+		    |
+		    | This controller handles authenticating users for the application and
+		    | redirecting them to your home screen. The controller uses a trait
+		    | to conveniently provide its functionality to your applications.
+		    |
+	*/
 
-    use AuthenticatesUsers;
+	use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
+	/**
+	 * Where to redirect users after login.
+	 *
+	 * @var string
+	 */
+	protected $redirectTo = '/home';
+	protected $username = 'username';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest', ['except' => 'logout']);
-    }
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		$this->middleware('guest', ['except' => 'logout']);
+	}
 
-    /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
+	/**
+	 * Log the user out of the application.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function logout(Request $request) {
+		$this->guard()->logout();
 
-        /*
-         * Remove the socialite session variable if exists
-         */
+		/*
+			         * Remove the socialite session variable if exists
+		*/
 
-        \Session::forget(config('access.socialite_session_name'));
+		\Session::forget(config('access.socialite_session_name'));
 
-        $request->session()->flush();
+		$request->session()->flush();
 
-        $request->session()->regenerate();
+		$request->session()->regenerate();
 
-        return redirect('/');
-    }
+		return redirect('/home');
+	}
 
-    /**
-     * Get the failed login response instance.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        $errors = [$this->username() => __('auth.failed')];
+	/**
+	 * Get the failed login response instance.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	protected function sendFailedLoginResponse(Request $request) {
+		$errors = [$this->username() => __('auth.failed')];
 
-        if ($request->expectsJson()) {
-            return response()->json($errors, 422);
-        }
+		if ($request->expectsJson()) {
+			return response()->json($errors, 422);
+		}
 
-        return redirect()->back()
-            ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors($errors);
-    }
+		return redirect()->back()
+			->withInput($request->only($this->username(), 'remember'))
+			->withErrors($errors);
+	}
 
-    /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  mixed $user
-     * @return mixed
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        $errors = [];
+	/**
+	 * The user has been authenticated.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 * @param  mixed $user
+	 * @return mixed
+	 */
+	protected function authenticated(Request $request, $user) {
+		$errors = [];
 
-        if (config('auth.users.confirm_email') && !$user->confirmed) {
-            $errors = [$this->username() => __('auth.confirmed', ['url' => route('confirm.send', [$user->email])])];
-        }
+		if (config('auth.users.confirm_email') && !$user->confirmed) {
+			$errors = [$this->username() => __('auth.confirmed', ['url' => route('confirm.send', [$user->email])])];
+		}
 
-        if (!$user->active) {
-            $errors = [$this->username() => __('auth.active')];
-        }
+		if (!$user->active) {
+			$errors = [$this->username() => __('auth.active')];
+		}
 
-        if ($errors) {
-            auth()->logout();  //logout
+		if ($errors) {
+			auth()->logout(); //logout
 
-            return redirect()->back()
-                ->withInput($request->only($this->username(), 'remember'))
-                ->withErrors($errors);
-        }
+			return redirect()->back()
+				->withInput($request->only($this->username(), 'remember'))
+				->withErrors($errors);
+		}
 
-        return redirect()->intended($this->redirectPath());
-    }
+		return redirect()->intended($this->redirectPath());
+	}
 }

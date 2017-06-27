@@ -11,6 +11,10 @@
                         <h1>{{ __('views.auth.login.header') }}</h1>
 
                         <div>
+                            <input type="text" class="form-control" name="username" value="{{ old('username') }}"
+                            placeholder="Username" required autofocus>
+                        </div>
+                        <div>
                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"
                                    placeholder="{{ __('views.auth.login.input_0') }}" required autofocus>
                         </div>

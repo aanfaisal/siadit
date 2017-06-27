@@ -48,7 +48,7 @@ Route::group(['namespace' => 'Auth'], function () {
  */
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
-
+	Route::get('/home', 'HomeController@index');
 	// Dashboard
 	Route::get('/', 'DashboardController@index')->name('dashboard');
 
@@ -67,5 +67,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 Route::get('/', function () {
 	return view('welcome');
 });
-
-Route::get('/home', 'HomeController@index');
