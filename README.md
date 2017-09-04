@@ -1,6 +1,6 @@
 # SiAdit :3
 
-Building Energy Audit System with Laravel 5.4
+Building Electric Audit System with Laravel 5.4
 
 ## Installation
 1. Install Composer using detailed installation instructions [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
